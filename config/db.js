@@ -7,7 +7,7 @@ const connectDB = async () => {
       return;
     }
 
-    const MONGO_URI = process.env.MONGO_URI; // Make sure .env has a DB name
+    const MONGO_URI = "=mongodb+srv://kainatn526_db_user:o5xbS2ekMTyJrS59@curalink.gmnvuke.mongodb.net/?retryWrites=true&w=majority&appName=Curalink"; // Make sure .env has a DB name
     const conn = await mongoose.connect(MONGO_URI, {
       // these options are optional with Node 4+
     });
