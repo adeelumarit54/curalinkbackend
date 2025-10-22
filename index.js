@@ -27,11 +27,9 @@
 // const PORT =  5000;
 // app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
 
-
-
 const express = require("express");
-const app = express();
 const serverless = require("serverless-http");
+const app = express();
 
 const authRoutes = require("./routes/authRoutes");
 const staffRoutes = require("./routes/staffRoutes");
@@ -42,5 +40,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/staff", staffRoutes);
 app.use("/api/users", userRoutes);
 
-module.exports = app;
-module.exports.handler = serverless(app);
+// Optional test route
+app.get("/", (req, res) => {
+  res.send("API running on Vercel 🚀");
+});
+
+module.exports = serverless(app);
