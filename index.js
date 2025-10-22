@@ -29,8 +29,14 @@
 
 const express = require("express");
 const serverless = require("serverless-http");
+const cors = require("cors");
 const app = express();
-
+// ✅ Allow requests from your frontend
+app.use(cors({
+  origin: ["http://localhost:5173", "https://your-frontend-domain.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 const authRoutes = require("./routes/authRoutes");
 const staffRoutes = require("./routes/staffRoutes");
 const userRoutes = require("./routes/userRoutes");
