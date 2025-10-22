@@ -1,54 +1,54 @@
-// import express from "express";
-// import mongoose from "mongoose";
-// import cors from "cors";
-// import dotenv from "dotenv";
-// import connectDB from "./config/db.js";
-// import staffRoutes from "./routes/staffRoutes.js";
-// import authRoutes from "./routes/authRoutes.js"; // ✅ ADD THIS
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import staffRoutes from "./routes/staffRoutes.js";
+import authRoutes from "./routes/authRoutes.js"; // ✅ ADD THIS
 
-// dotenv.config();
-// const app = express();
-
-// // Middleware
-// app.use(express.json());
-// app.use(cors());
-
-// // Connect DB
-// connectDB();
-
-// // Base route
-// app.get("/", (req, res) => res.send("API is running..."));
-
-// // Routes
-// app.use("/api/auth", authRoutes); // ✅ ADD THIS
-// app.use("/api/staff", staffRoutes);
-
-// // Start server
-// const PORT =  5000;
-// app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
-
-const express = require("express");
-const serverless = require("serverless-http");
-const cors = require("cors");
+dotenv.config();
 const app = express();
-// ✅ Allow requests from your frontend
-app.use(cors({
-  origin: ["http://localhost:5173", "https://your-frontend-domain.vercel.app"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
-const authRoutes = require("./routes/authRoutes");
-const staffRoutes = require("./routes/staffRoutes");
-const userRoutes = require("./routes/userRoutes");
 
+// Middleware
 app.use(express.json());
-app.use("/api/auth", authRoutes);
+app.use(cors());
+
+// Connect DB
+connectDB();
+
+// Base route
+app.get("/", (req, res) => res.send("API is running..."));
+
+// Routes
+app.use("/api/auth", authRoutes); // ✅ ADD THIS
 app.use("/api/staff", staffRoutes);
-app.use("/api/users", userRoutes);
 
-// Optional test route
-app.get("/", (req, res) => {
-  res.send("API running on Vercel 🚀");
-});
+// Start server
+const PORT =  5000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
 
-module.exports = serverless(app);
+// const express = require("express");
+// const serverless = require("serverless-http");
+// const cors = require("cors");
+// const app = express();
+// // ✅ Allow requests from your frontend
+// app.use(cors({
+//   origin: ["http://localhost:5173", "https://your-frontend-domain.vercel.app"],
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   credentials: true
+// }));
+// const authRoutes = require("./routes/authRoutes");
+// const staffRoutes = require("./routes/staffRoutes");
+// const userRoutes = require("./routes/userRoutes");
+
+// app.use(express.json());
+// app.use("/api/auth", authRoutes);
+// app.use("/api/staff", staffRoutes);
+// app.use("/api/users", userRoutes);
+
+// // Optional test route
+// app.get("/", (req, res) => {
+//   res.send("API running on Vercel 🚀");
+// });
+
+// module.exports = serverless(app);
